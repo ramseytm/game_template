@@ -34,7 +34,7 @@ class MainMenuScreen extends StatelessWidget {
               'Testing Flutter Game Template!',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontFamily: 'Permanent Marker',
+                fontFamily: 'Ariel',
                 fontSize: 55,
                 height: 1,
               ),

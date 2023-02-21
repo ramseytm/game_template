@@ -20,6 +20,7 @@ import '../level_selection/levels.dart';
 import '../player_progress/player_progress.dart';
 import '../style/confetti.dart';
 import '../style/palette.dart';
+import '../data/words.dart';
 
 class PlaySessionScreen extends StatefulWidget {
   final GameLevel level;
@@ -65,29 +66,41 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: InkResponse(
-                        onTap: () => GoRouter.of(context).push('/settings'),
-                        child: Image.asset(
-                          'assets/images/settings.png',
-                          semanticLabel: 'Settings',
-                        ),
+                    Center(
+                      child: Text(
+                        "Wordle Clone",
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    const Spacer(),
-                    Text('Drag the slider to ${widget.level.difficulty}%'
-                        ' or above!'),
-                    Consumer<LevelState>(
-                      builder: (context, levelState, child) => Slider(
-                        label: 'Level Progress',
-                        autofocus: true,
-                        value: levelState.progress / 100,
-                        onChanged: (value) =>
-                            levelState.setProgress((value * 100).round()),
-                        onChangeEnd: (value) => levelState.evaluate(),
+                    for (var i = 0; i < 6; i++)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          for (var i = 0; i < 5; i++)
+                            Container(
+                              margin: EdgeInsets.all(3.0),
+                              padding: EdgeInsets.all(45.0),
+                              alignment: Alignment.centerLeft,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(color: Colors.black)),
+                            ),
+                        ],
                       ),
-                    ),
+
+                    // Text('Drag the slider to ${widget.level.difficulty}%'
+                    //     ' or above!'),
+                    // Consumer<LevelState>(
+                    //   builder: (context, levelState, child) => Slider(
+                    //     label: 'Level Progress',
+                    //     autofocus: true,
+                    //     value: levelState.progress / 100,
+                    //     onChanged: (value) =>
+                    //         levelState.setProgress((value * 100).round()),
+                    //     onChangeEnd: (value) => levelState.evaluate(),
+                    //   ),
+                    // ),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
